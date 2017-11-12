@@ -1,0 +1,19 @@
+\documentclass{article}
+%\VignetteIndexEntry{ecg}
+\begin{document}
+\begin{center}
+\Large
+{\tt snowflakes} Package Vignette
+\normalsize
+\end{center}
+
+The following figure illustrates snowflakes.
+<<fig=TRUE, keep.source=TRUE>>=
+library('lattice')
+library('snowflakes')
+#data('snowflakes')
+
+cat("Just kidding... Snowflakes are coming right up")
+
+@
+\end{document}
