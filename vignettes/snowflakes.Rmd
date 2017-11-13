@@ -1,0 +1,73 @@
+---
+title: "Random Snowflake Generator"
+author: "Svetlana Eden"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Random Snowflake Generator}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+
+- Never uses retina figures
+- Has a smaller default figure size
+- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+
+## Vignette Info
+
+Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+
+
+## Figures
+
+The figure sizes have been customised so that you can easily put two images side-by-side. 
+
+You can enable figure captions by `fig_caption: yes` in YAML:
+
+    output:
+      rmarkdown::html_vignette:
+        fig_caption: yes
+
+Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+In the following I had an option results='asis', but I replaced it with fig.show='hold'
+
+```{r, echo=TRUE, fig.show='hold', fig.height = 7, fig.width = 7}
+library('snowflakes')
+#data('snowflakes')
+########### make transparent color
+colorCoord = as.hexmode(col2rgb("blue"))
+transpBlue =paste("#", paste(colorCoord, collapse=""), "44", sep="")
+colorCoord = as.hexmode(col2rgb("white"))
+transpWhite =paste("#", paste(colorCoord, collapse=""), "66", sep="")
+
+numSnowflPerRow = 5
+selectSeeds = sample(1:100000, numSnowflPerRow^2)
+xCoor = rep(1:numSnowflPerRow, numSnowflPerRow)
+yCoor = rep(1:numSnowflPerRow, each = numSnowflPerRow)
+radius = .4
+
+par(mar = c(0, 0, 0, 0))
+plot(range(xCoor)+c(-1, 1)*.5, range(yCoor)+c(-1, 1)*.5, type="n", axes = FALSE, ylab="", xlab="")
+snowflakes(xCoor = xCoor[1], yCoor = yCoor[1], radius = radius, color = transpBlue, anotherColor = "#33333333", seeds = selectSeeds[1])
+for (i in 2:numSnowflPerRow^2){
+  snowflakes(xCoor = xCoor[i], yCoor = yCoor[i], radius = radius, color = transpBlue, anotherColor = "#33333333", seeds = selectSeeds[i])
+	snowflakes(xCoor = xCoor[i-1], yCoor = yCoor[i-1], radius = radius, color = transpWhite, anotherColor = transpWhite, seeds = selectSeeds[i-1])
+	text(xCoor[i-1], yCoor[i-1], selectSeeds[i-1], cex=.5, pos = 3)
+}
+
+snowflakes(xCoor = xCoor[i], yCoor = yCoor[i], radius = radius, color = transpWhite, anotherColor = transpWhite, seeds = selectSeeds[i])
+text(xCoor[i], yCoor[i], selectSeeds[i], cex=.5, pos = 3)
+
+```
+
+Also a quote using `>`:
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))
