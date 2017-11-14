@@ -76,18 +76,11 @@ Svetlana Eden <svetlana.eden@vanderbilt.edu>
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-
 ########### make transparent color
 colorCoord = as.hexmode(col2rgb("blue"))
 transpBlue =paste("#", paste(colorCoord, collapse=""), "44", sep="")
 colorCoord = as.hexmode(col2rgb("white"))
 transpWhite =paste("#", paste(colorCoord, collapse=""), "66", sep="")
-
-numSnowflPerRow = 5
-selectSeeds = sample(1:100000, numSnowflPerRow^2)
-xCoor = rep(1:numSnowflPerRow, numSnowflPerRow)
-yCoor = rep(1:numSnowflPerRow, each = numSnowflPerRow)
-radius = .4
 
 plot(range(xCoor)+c(-1, 1), range(yCoor)+c(-1, 1), type="n", axes = FALSE, ylab="", xlab="")
 snowflakes(xCoor = xCoor[1], yCoor = yCoor[1], radius = radius, color = transpBlue, anotherColor = "#33333333", seeds = selectSeeds[1])
@@ -98,7 +91,6 @@ for (i in 2:numSnowflPerRow^2){
 }
 snowflakes(xCoor = xCoor[i], yCoor = yCoor[i], radius = radius, color = transpWhite, anotherColor = transpWhite, seeds = selectSeeds[i])
 text(xCoor[i], yCoor[i], selectSeeds[i], cex=.5, pos = 3)
-
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
