@@ -7,7 +7,7 @@ Plots Randomly Generated Snowflakes
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-The function generates snowflakes with a given diameter, width of the crystal, color, and random seed. The snowflakes are plotted in such way that they always remain round, no matter what the aspect is of the plot is. The snowflakes can be created using transparent colors, including transparent white. This creates a special effect of a crystal and can be displayed on a darker background. The images of snowflakes can be saved as a svg file and used as a moving image when creating websites.
+The function generates and plots random snowflakes. Each snowflake is defined by a given diameter, width of the crystal, color, and random seed. Snowflakes are plotted in such way that they always remain round, no matter what the aspect ratio of the plot is. Snowflakes can be created using transparent colors, which creates a more interesting, somewhat realistic, image. Images of the snowflakes can be separately saved as svg files and used in websites as static or animated images.
 }
 \usage{
 snowflakes(xCoor, yCoor, radius, orientation = pi/6, edgeRadius = NULL, 

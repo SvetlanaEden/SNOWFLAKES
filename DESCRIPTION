@@ -1,11 +1,10 @@
 Package: snowflakes
-Type: Generating Random Snowflakes
-Title: What the package does (short line)
+Title: Random Snowflake Generator
 Version: 1.0
 Date: 2017-11-12
 Author: Svetlana Eden <svetlana.eden@vanderbilt.edu>
 Maintainer: Svetlana Eden <svetlana.eden@vanderbilt.edu>
-Description: If you are creating a winter holiday project or would like to plot your data using snowflakes instead of points, this package is for you. It creates random snowflakes with some useful properties so you can use them in your data report. First important property is that the snowflakes are round (the aspect of the plot is automatically identified and taken into account). Just like dots in the basic R graphics are always round, the snoflakes are always round no matter what the aspect of you plot you use. The second property is that the snowflakes are scaleable. If you increase the size of the snowflake, its cristal width will increase accordingly. The third property is there are infinite number of types of snowflakes that you can choose from. Each type is determined by a random seed. Other properties include choosing the size of a snowflake, its width, the angle, some other parameters, and of course the color. If you choose a transparent color, it will add additional depth to your snowflake image. Examples are provided in order to demonstrate how to create very cool snow-looking snowflakes using transparent colors.
+Description: The function generates and plots random snowflakes. Each snowflake is defined by a given diameter, width of the crystal, color, and random seed. Snowflakes are plotted in such way that they always remain round, no matter what the aspect ratio of the plot is. Snowflakes can be created using transparent colors, which creates a more interesting, somewhat realistic, image. Images of the snowflakes can be separately saved as svg files and used in websites as static or animated images.
 License: License: GPL (>= 2)
 Depends: R (>= 2.10)
 LazyLoad: yes
