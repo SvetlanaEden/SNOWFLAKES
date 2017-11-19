@@ -18,31 +18,28 @@ snowflakes(xCoor, yCoor, radius, orientation = pi/6, edgeRadius = NULL,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{xCoor}{
-  The X coordinate of the snowflake. This argument can be a vector when multiple snowflakes are plotted.
+  The X coordinate of the snowflake. This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{yCoor}{
-  The Y coordinate of the snowflake. This argument can be a vector when multiple snowflakes are plotted.
+  The Y coordinate of the snowflake. This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{radius}{
-  The radius of the snowflake.
+  The radius of the snowflake. This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{orientation}{
-  The angle of the snowflake relatively to its center, measured in radians. Note that the rotation of the snowflake around its center can be visible only within a range from 0 to on sixth of a pi radians becasuse the snowflake has 6 axes.
-}
-  \item{edgeRadius}{
-  The radius of the inner circle of the crystal.
+  The angle of the snowflake relatively to its center, measured in radians. Note that the rotation of the snowflake around its center can be visible only within a range from 0 to the sixth of a pi becasuse the snowflake has 6 axes. This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{deltaCoef}{
-  By how much the radius is lager than the width of the crystal. The width of the crystal is computed as a ratio of the \code{"radius"} over \code{"deltaCoef"}
+  By how much the radius is lager than the width of the crystal. The width of the crystal is computed as a ratio of the \code{"radius"} over \code{"deltaCoef"}. This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{color}{
-  The color of the snowflake (can be transparent).
+  The color of the snowflake (can be transparent). This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{anotherColor}{
-  The color of a part of the snowflake to make it more interesting.
+  The color of the main frame of the snowflake. This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{aspectRatio}{
-  Aspect ratio chosen automatically so that the snowflake remains round. If changed, the snowflake might not be round any longer.
+  Aspect ratio of the snowflake. Aspect ratio is chosen automatically so that the snowflake remains round. If changed, the snowflake might not be round any longer. This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{seeds}{
   Random seed that defines a unique snowflake given that other parameters are assigned to their defaults.
@@ -57,7 +54,7 @@ snowflakes(xCoor, yCoor, radius, orientation = pi/6, edgeRadius = NULL,
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
-  Returns seeds that were used in order to generate snowflakes, so you can save them and use the ones that were responsible for generating the snowflakes that appealed to you the most.
+  Returns seeds that were used to generate the snowflakes. The user can save them and use the ones that are associated with the most appealing snowflakes.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -76,21 +73,18 @@ Svetlana Eden <svetlana.eden@vanderbilt.edu>
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-########### make transparent color
-colorCoord = as.hexmode(col2rgb("blue"))
-transpBlue =paste("#", paste(colorCoord, collapse=""), "44", sep="")
-colorCoord = as.hexmode(col2rgb("white"))
-transpWhite =paste("#", paste(colorCoord, collapse=""), "66", sep="")
+t = seq(0, 5*pi, .5)
+xCoor = t*cos(t)
+yCoor = t*sin(t)
+radius = 1
+orientation = runif(length(xCoor))*(pi/6)
 
-plot(range(xCoor)+c(-1, 1), range(yCoor)+c(-1, 1), type="n", axes = FALSE, ylab="", xlab="")
-snowflakes(xCoor = xCoor[1], yCoor = yCoor[1], radius = radius, color = transpBlue, anotherColor = "#33333333", seeds = selectSeeds[1])
-for (i in 2:numSnowflPerRow^2){
-  snowflakes(xCoor = xCoor[i], yCoor = yCoor[i], radius = radius, color = transpBlue, anotherColor = "#33333333", seeds = selectSeeds[i])
-	snowflakes(xCoor = xCoor[i-1], yCoor = yCoor[i-1], radius = radius, color = transpWhite, anotherColor = transpWhite, seeds = selectSeeds[i-1])
-	text(xCoor[i-1], yCoor[i-1], selectSeeds[i-1], cex=.5, pos = 3)
-}
-snowflakes(xCoor = xCoor[i], yCoor = yCoor[i], radius = radius, color = transpWhite, anotherColor = transpWhite, seeds = selectSeeds[i])
-text(xCoor[i], yCoor[i], selectSeeds[i], cex=.5, pos = 3)
+set.seed(1)
+
+# plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*0.5, xlim = range(xCoor) + radius*c(-1, 1)*0.5, col=gray(.9))
+plot(xCoor, yCoor, type="l", axes = TRUE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*3, xlim = range(xCoor) + radius*c(-1, 1)*0, col=gray(.9))
+
+returnedSeeds = snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, orientation = orientation, seeds = 1:3, color = gray((1:length(xCoor))/(length(xCoor)+1)), anotherColor = "gray")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

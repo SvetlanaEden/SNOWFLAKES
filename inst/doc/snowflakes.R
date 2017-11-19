@@ -2,39 +2,47 @@
 library('snowflakes')
 #data('snowflakes')
 
-## ---- echo=TRUE, fig.show='hold', fig.height = 4, fig.width = 4, fig.cap = "Quadratic function using snowflakes instead of points."----
+## ---- echo=TRUE, fig.show='hold', fig.height = 7, fig.width = 7, fig.cap = "Quadratic function plotted using snowflakes (in transparent gray) instead of points."----
 xCoor = seq(0, 2, .25)
 yCoor = (xCoor-1)^2
 radius = 0.1
 
 set.seed(1)
 
-plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1), xlim = range(xCoor) + radius*c(-1, 1), col=gray(.9))
+par(mar = c(0, 0, 0, 0))
+plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*0.7, xlim = range(xCoor) + radius*c(-1, 1)*0.7, col=gray(.9))
+
 snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, color = "#22222222")
 
-## ---- echo=TRUE, fig.show='hold', fig.height = 4, fig.width = 4, fig.cap = "Quadratic function using snowflakes instead of points."----
-xCoor = seq(0, 2, .25)
+## ---- echo=TRUE, fig.show='hold', fig.height = 5, fig.width = 5, fig.cap = "Same snowflake pattern, but different crystal widths."----
+xCoor = seq(0, 1, .25)
 yCoor = xCoor
 radius = 0.15
 
 set.seed(1)
 
-plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1), xlim = range(xCoor) + radius*c(-1, 1), col=gray(.9))
-snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, seeds = c(1), deltaCoef = 15 - (0:(length(xCoor)-1)), color = "#44444444")
+par(mar = c(0, 0, 0, 0))
+plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*0.7, xlim = range(xCoor) + radius*c(-1, 1)*0.7, col=gray(.9))
 
-## ---- echo=TRUE, fig.show='hold', fig.height = 4, fig.width = 4, fig.cap = "Quadratic function using snowflakes instead of points."----
+snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, seeds = c(9492), deltaCoef = 15 - (0:(length(xCoor)-1))*3, color = "#22222222")
+
+## ---- echo=TRUE, fig.show='hold', fig.height = 5, fig.width = 7, fig.cap = "Snowflake spiral with each snowflake oriented toward the center of the spiral (well, almost)."----
 t = seq(0, 5*pi, .5)
 xCoor = t*cos(t)
 yCoor = t*sin(t)
-radius = 1
-orientation = runif(length(xCoor))*(pi/6)
+radius = 1.2
+orientation = -(pi + t)
 
 set.seed(1)
 
-plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1), xlim = range(xCoor) + radius*c(-1, 1), col=gray(.9))
-returnedSeeds = snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, orientation = orientation, seeds = 1:3, color = gray((1:length(xCoor))/(length(xCoor)+1)))
+par(mar = c(0, 0, 0, 0))
+plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*0.5, xlim = range(xCoor) + radius*c(-1, 1)*0.5, col=gray(.9), asp = 2/3)
 
-## ---- echo=TRUE, fig.show='hold', fig.height = 7, fig.width = 7, fig.cap = "Example of snowflakes with their random seeds."----
+segments(x0 = rep(0, length(xCoor)), y0 = rep(0, length(xCoor)), x1 = xCoor, y1 = yCoor, col = gray((1:length(xCoor))/(length(xCoor)+1)), lty = 3)
+
+returnedSeeds = snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, orientation = orientation, seeds = 1:3, color = gray((1:length(xCoor))/(length(xCoor)+1)), anotherColor = "gray")
+
+## ---- echo=TRUE----------------------------------------------------------
 
 fancySnowflakes = function(xCoor, yCoor, radius, seeds, orientation = pi/6){
   colorCoord = as.hexmode(col2rgb("blue"))
@@ -47,6 +55,8 @@ fancySnowflakes = function(xCoor, yCoor, radius, seeds, orientation = pi/6){
   }
 }
 
+## ---- echo=TRUE, fig.show='hold', fig.height = 7, fig.width = 7, fig.cap = "Cool looking snowflakes."----
+
 numSnowflPerRow = 5
 set.seed(2018)
 selectSeeds = sample(1:100000, numSnowflPerRow^2)
@@ -54,37 +64,12 @@ xCoor = rep(1:numSnowflPerRow, numSnowflPerRow)
 yCoor = rep(1:numSnowflPerRow, each = numSnowflPerRow)
 radius = .4
 
-par(mar = c(0, 0, 0, 0))
-plot(range(xCoor)+c(-1, 1)*.5, range(yCoor)+c(-1, 1)*.5, type="n", axes = FALSE, ylab="", xlab="")
-for (i in 1:numSnowflPerRow^2){
-  fancySnowflakes(xCoor = xCoor[i], yCoor = yCoor[i], radius = radius, seeds = selectSeeds[i])
-  text(xCoor[i], yCoor[i], selectSeeds[i], cex=.5, pos = 3)
-}
-
-
-## ---- echo=TRUE, fig.show='hold', fig.height = 7, fig.width = 7, fig.cap = "Example of snowflakes with their random seeds."----
-########### make transparent color
-colorCoord = as.hexmode(col2rgb("blue"))
-transpBlue =paste("#", paste(colorCoord, collapse=""), "44", sep="")
-colorCoord = as.hexmode(col2rgb("white"))
-transpWhite =paste("#", paste(colorCoord, collapse=""), "66", sep="")
-
-numSnowflPerRow = 5
-selectSeeds = sample(1:100000, numSnowflPerRow^2)
-xCoor = rep(1:numSnowflPerRow, numSnowflPerRow)
-yCoor = rep(1:numSnowflPerRow, each = numSnowflPerRow)
-radius = .4
 
 par(mar = c(0, 0, 0, 0))
 plot(range(xCoor)+c(-1, 1)*.5, range(yCoor)+c(-1, 1)*.5, type="n", axes = FALSE, ylab="", xlab="")
-snowflakes(xCoor = xCoor[1], yCoor = yCoor[1], radius = radius, color = transpBlue, anotherColor = "#33333333", seeds = selectSeeds[1])
-for (i in 2:numSnowflPerRow^2){
-  snowflakes(xCoor = xCoor[i], yCoor = yCoor[i], radius = radius, color = transpBlue, anotherColor = "#33333333", seeds = selectSeeds[i])
-  snowflakes(xCoor = xCoor[i-1], yCoor = yCoor[i-1], radius = radius, color = transpWhite, anotherColor = transpWhite, seeds = selectSeeds[i-1])
-  text(xCoor[i-1], yCoor[i-1], selectSeeds[i-1], cex=.5, pos = 3)
-}
+selectSeeds = c(90068, 46258, 41165, 66142, 4636, 37906, 17295, 9250, 30595, 74555, 12669, 62970, 96997, 43447, 81975, 23841, 73197, 8419, 14318, 83885, 29343, 47445, 66721, 29854, 77912)
 
-snowflakes(xCoor = xCoor[i], yCoor = yCoor[i], radius = radius, color = transpWhite, anotherColor = transpWhite, seeds = selectSeeds[i])
-text(xCoor[i], yCoor[i], selectSeeds[i], cex=.5, pos = 3)
+fancySnowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, seeds = selectSeeds)
+text(xCoor, yCoor, selectSeeds[i], cex=.5, pos = 3)
 
 
