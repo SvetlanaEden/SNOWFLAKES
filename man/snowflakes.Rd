@@ -27,7 +27,7 @@ snowflakes(xCoor, yCoor, radius, orientation = pi/6,
   The radius of the snowflake. This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{orientation}{
-  The angle of the snowflake relatively to its center, measured in radians. Note that the rotation of the snowflake around its center can be visible only within a range from 0 to the sixth of a pi becasuse the snowflake has 6 axes. This argument may be a vector when multiple snowflakes are plotted.
+  The angle of the snowflake relatively to its center, measured in radians. Note that the rotation of the snowflake around its center can be visible only within a range from 0 to the sixth of the constant pi because the snowflake has 6 axes. This argument may be a vector when multiple snowflakes are plotted.
 }
   \item{deltaCoef}{
   By how much the radius is lager than the width of the crystal. The width of the crystal is computed as a ratio of the \code{"radius"} over \code{"deltaCoef"}. This argument may be a vector when multiple snowflakes are plotted.
