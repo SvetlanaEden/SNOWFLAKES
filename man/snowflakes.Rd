@@ -10,7 +10,7 @@ Plots Randomly Generated Snowflakes
 The function generates and plots random snowflakes. Each snowflake is defined by a given diameter, width of the crystal, color, and random seed. Snowflakes are plotted in such way that they always remain round, no matter what the aspect ratio of the plot is. Snowflakes can be created using transparent colors, which creates a more interesting, somewhat realistic, image. Images of the snowflakes can be separately saved as svg files and used in websites as static or animated images.
 }
 \usage{
-snowflakes(xCoor, yCoor, radius, orientation = pi/6, edgeRadius = NULL, 
+snowflakes(xCoor, yCoor, radius, orientation = pi/6, 
     deltaCoef = 15, color = "#00007744", anotherColor = color, 
     aspectRatio = NULL, seeds = NULL) 
 }
@@ -81,10 +81,13 @@ orientation = runif(length(xCoor))*(pi/6)
 
 set.seed(1)
 
-# plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*0.5, xlim = range(xCoor) + radius*c(-1, 1)*0.5, col=gray(.9))
-plot(xCoor, yCoor, type="l", axes = TRUE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*3, xlim = range(xCoor) + radius*c(-1, 1)*0, col=gray(.9))
+plot(xCoor, yCoor, type="l", axes = TRUE, ylab="", xlab="",
+ylim = range(yCoor) + radius*c(-1, 1)*3,
+xlim = range(xCoor) + radius*c(-1, 1)*0, col=gray(.9))
 
-returnedSeeds = snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, orientation = orientation, seeds = 1:3, color = gray((1:length(xCoor))/(length(xCoor)+1)), anotherColor = "gray")
+returnedSeeds = snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius,
+  orientation = orientation, seeds = 1:3,
+  color = gray((1:length(xCoor))/(length(xCoor)+1)), anotherColor = "gray")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
