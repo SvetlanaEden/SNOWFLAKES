@@ -1,0 +1,47 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# snowflakes
+
+The package generates and plots random snowflakes that can be used instead of points. The snowflakes have some useful properties. Just like points in R base graphics, the snowflakes are round, no matter what aspect ratio you are using. Another nice property is that the snowflakes are scaleable: if you increase the size of the snowflake, its crystal width will increase accordingly. Most importantly, there is an infinite number of snowflake patterns that you can choose from. Each pattern is uniquely determined by a random seed. Random seeds are returned so you can reproduce the snowflakes that are your favorite. Snowflakes can be plotted using different sizes, widths, angles, and of course, colors. For more examples please see the vignette.
+
+## Installation
+
+You can install snowflakes from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("SvetlanaEden/SNOWFLAKES")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+## basic example code
+library('snowflakes')
+
+xCoor = seq(0, 2, .25)
+yCoor = (xCoor-1)^2
+radius = 0.1
+
+set.seed(1)
+
+par(mar = c(0, 0, 0, 0))
+plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*0.7, xlim = range(xCoor) + radius*c(-1, 1)*0.7, col=gray(.9))
+
+returnedSeeds = snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, color = "#22222222")
+
+```
