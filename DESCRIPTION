@@ -5,7 +5,7 @@ Date: 2017-11-12
 Author: Svetlana Eden <svetlana.eden@vanderbilt.edu>
 Maintainer: Svetlana Eden <svetlana.eden@vanderbilt.edu>
 Description: The function generates and plots random snowflakes. Each snowflake is defined by a given diameter, width of the crystal, color, and random seed. Snowflakes are plotted in such way that they always remain round, no matter what the aspect ratio of the plot is. Snowflakes can be created using transparent colors, which creates a more interesting, somewhat realistic, image. Images of the snowflakes can be separately saved as svg files and used in websites as static or animated images.
-License: License: GPL (>= 2)
+License: GPL (>= 2)
 Depends: R (>= 2.10)
 LazyLoad: yes
 Suggests: knitr,
