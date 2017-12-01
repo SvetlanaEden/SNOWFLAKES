@@ -7,7 +7,7 @@ Plots Randomly Generated Snowflakes
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-The function generates and plots random snowflakes. Each snowflake is defined by a given diameter, width of the crystal, color, and random seed. Snowflakes are plotted in such way that they always remain round, no matter what the aspect ratio of the plot is. Snowflakes can be created using transparent colors, which creates a more interesting, somewhat realistic, image. Images of the snowflakes can be separately saved as svg files and used in websites as static or animated images.
+The function generates and plots random snowflakes. Each snowflake is defined by a given diameter, width of the crystal, color, and random seed. Snowflakes are plotted in such way that they always remain round, no matter what the aspect ratio of the plot is. Snowflakes can be created using transparent colors, which create a more interesting and more realistic image. Images of the snowflakes can be separately saved in svg files and used in websites as static or animated images.
 }
 \usage{
 snowflakes(xCoor, yCoor, radius, orientation = pi/6, 
@@ -46,6 +46,7 @@ snowflakes(xCoor, yCoor, radius, orientation = pi/6,
 }
 }
 \details{
+  See the vignette for more details and examples.
 }
 
 \value{
@@ -57,21 +58,13 @@ snowflakes(xCoor, yCoor, radius, orientation = pi/6,
   Returns seeds that were used to generate the snowflakes. The user can save them and use the ones that are associated with the most appealing snowflakes.
 }
 \references{
-%% ~put references to the literature/web site here ~
+https://github.com/SvetlanaEden/SNOWFLAKES
 }
 \author{
 %%  ~~who you are~~
 Svetlana Eden <svetlana.eden@vanderbilt.edu>
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 t = seq(0, 5*pi, .5)
 xCoor = t*cos(t)

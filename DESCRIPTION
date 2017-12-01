@@ -1,6 +1,6 @@
 Package: snowflakes
 Title: Random Snowflake Generator
-Version: 1.0
+Version: 1.0.0
 Date: 2017-11-12
 Author: Svetlana Eden <svetlana.eden@vanderbilt.edu>
 Maintainer: Svetlana Eden <svetlana.eden@vanderbilt.edu>
