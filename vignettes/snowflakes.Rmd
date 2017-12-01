@@ -108,7 +108,7 @@ plot(range(xCoor)+c(-1, 1)*.5, range(yCoor)+c(-1, 1)*.5, type="n", axes = FALSE,
 selectSeeds = c(90068, 46258, 41165, 66142, 4636, 37906, 17295, 9250, 30595, 74555, 12669, 62970, 96997, 43447, 81975, 23841, 73197, 8419, 14318, 83885, 29343, 47445, 66721, 29854, 77912)
 
 fancySnowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, seeds = selectSeeds)
-text(xCoor, yCoor, selectSeeds[i], cex=.5, pos = 3)
+text(xCoor, yCoor, selectSeeds, cex=.5, pos = 3)
 
 ```
 
