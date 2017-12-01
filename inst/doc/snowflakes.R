@@ -24,19 +24,19 @@ set.seed(1)
 par(mar = c(0, 0, 0, 0))
 plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*0.7, xlim = range(xCoor) + radius*c(-1, 1)*0.7, col=gray(.9))
 
-snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, seeds = c(9492), deltaCoef = 15 - (0:(length(xCoor)-1))*3, color = "#22222222")
+returnedSeeds = snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, seeds = c(9492), deltaCoef = 15 - (0:(length(xCoor)-1))*3, color = "#22222222")
 
 ## ---- echo=TRUE, fig.show='hold', fig.height = 5, fig.width = 7, fig.cap = "Snowflake spiral with each snowflake oriented toward the center of the spiral (well, almost)."----
 t = seq(0, 5*pi, .5)
 xCoor = t*cos(t)
 yCoor = t*sin(t)
-radius = 1.2
+radius = seq(.6, 1.8, 1.2/(length(t)-1))
 orientation = -(pi + t)
 
 set.seed(1)
 
 par(mar = c(0, 0, 0, 0))
-plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*0.5, xlim = range(xCoor) + radius*c(-1, 1)*0.5, col=gray(.9), asp = 2/3)
+plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + max(radius)*c(-1, 1)*0.5, xlim = range(xCoor) + max(radius)*c(-1, 1)*0.5, col=gray(.9), asp = 2/3)
 
 segments(x0 = rep(0, length(xCoor)), y0 = rep(0, length(xCoor)), x1 = xCoor, y1 = yCoor, col = gray((1:length(xCoor))/(length(xCoor)+1)), lty = 3)
 

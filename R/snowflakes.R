@@ -23,6 +23,9 @@ function(xCoor, yCoor, radius, orientation = pi/6, deltaCoef = 15, color="#00007
 	}else{
 		aspectRatio <- rep(aspectRatio, length.out=length(xCoor))
 	}
+  aspectAdjustedOrientation = orientation
+  ### under construction
+  #aspectAdjustedOrientation = asin(sin(orientation)*aspectRatio)
 	if(any(deltaCoef <= 0)) stop("deltaCoef has to be positive")
   if(length(unique(c(length(xCoor), length(yCoor), length(radius))))>2) stop("xCoor, yCoor, radius have to have the same length")
 	#####################################  loop for each snowflake
@@ -31,7 +34,7 @@ function(xCoor, yCoor, radius, orientation = pi/6, deltaCoef = 15, color="#00007
 		#cat("plotting", xCoor[i], yCoor[i], i, radius[i], color[i], anotherColor, "\n")
 		set.seed(seeds[i])
 		samplingForHexRadius = rbeta(20, 1, 4)/1
-		edgeCoorList = snowflakeWithHex(center = c(xCoor[i], yCoor[i]), radius = radius[i], hexRadius = radius[i]*samplingForHexRadius, orientation = orientation[i], edgeRadius=edgeRadius[i], delta = delta[i], color=color[i], anotherColor = anotherColor[i], aspectRatio = aspectRatio[i])
+		edgeCoorList = snowflakeWithHex(center = c(xCoor[i], yCoor[i]), radius = radius[i], hexRadius = radius[i]*samplingForHexRadius, orientation = aspectAdjustedOrientation[i], edgeRadius=edgeRadius[i], delta = delta[i], color=color[i], anotherColor = anotherColor[i], aspectRatio = aspectRatio[i])
 		#####################################  loop for each level of smaller cristal clusters
     newEdgeRadius = edgeRadius[i]*c(1, runif(length(edgeCoorList)-1, 2*delta[i], .5*radius/edgeRadius[i]))
 		
@@ -43,7 +46,7 @@ function(xCoor, yCoor, radius, orientation = pi/6, deltaCoef = 15, color="#00007
 			for (j in 1:nrow(edgeCoorList[[edgeInd]])){
 				edgeX = edgeCoorList[[edgeInd]][j,'edgeX']
 				edgeY = edgeCoorList[[edgeInd]][j,'edgeY']
-				snowflakeWithHex(center = c(edgeX, edgeY), radius = newEdgeRadius[edgeInd], orientation = orientation[i], hexRadius = hexRadiusEdges, delta = delta[i], color=color[i], anotherColor = anotherColor[i], aspectRatio=aspectRatio[i])
+				snowflakeWithHex(center = c(edgeX, edgeY), radius = newEdgeRadius[edgeInd], orientation = aspectAdjustedOrientation[i], hexRadius = hexRadiusEdges, delta = delta[i], color=color[i], anotherColor = anotherColor[i], aspectRatio = aspectRatio[i])
 		  }
 	  }
   }
