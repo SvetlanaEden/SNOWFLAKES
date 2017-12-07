@@ -14,7 +14,6 @@ If you are tired of the point types available in R base graphics and want to bre
 
 ```{r, echo=TRUE, results='asis'}
 library('snowflakes')
-#data('snowflakes')
 ```
 
 First, let's create a simple plot. Suppose we need to plot a quadratic function, $Y = (X-1)^2$. Instead of points, we use snowflakes plotted in a transparent gray color. Transparent colors make snowflakes look more like crystals.
@@ -116,6 +115,6 @@ text(xCoor, yCoor, selectSeeds, cex=.5, pos = 3)
 
 ```
 
-There are many other ways to play with snowflakes. For example, they can be generated using a transparent white color and displayed on a dark background. They can also be saved in an svg format and used as static or animated images, see the front page of [my website](https://svetlanaeden.github.io)(which is still under construction) as an example.
+There are many other ways to play with snowflakes. For example, they can be generated using a transparent white color and displayed on a dark background. They can also be saved in an svg format and used as static or animated images, see the front page of [my website](https://svetlanaeden.github.io) (which is still under construction) as an example.
 
 #### I hope that using this package will brighten up your day!
