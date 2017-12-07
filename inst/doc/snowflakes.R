@@ -1,6 +1,5 @@
 ## ---- echo=TRUE, results='asis'------------------------------------------
 library('snowflakes')
-#data('snowflakes')
 
 ## ---- echo=TRUE, fig.show='hold', fig.height = 7, fig.width = 7, fig.cap = "Quadratic function plotted using snowflakes (in transparent gray) instead of points."----
 xCoor = seq(0, 2, .25)
@@ -22,7 +21,9 @@ radius = 0.15
 set.seed(1)
 
 par(mar = c(0, 0, 0, 0))
-plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + radius*c(-1, 1)*0.7, xlim = range(xCoor) + radius*c(-1, 1)*0.7, col=gray(.9))
+plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="",
+ylim = range(yCoor) + radius*c(-1, 1)*0.7,
+xlim = range(xCoor) + radius*c(-1, 1)*0.7, col=gray(.9))
 
 returnedSeeds = snowflakes(xCoor = xCoor, yCoor = yCoor, radius = radius, seeds = c(9492), deltaCoef = 15 - (0:(length(xCoor)-1))*3, color = "#22222222")
 
@@ -36,7 +37,9 @@ orientation = -(pi + t)
 set.seed(1)
 
 par(mar = c(0, 0, 0, 0))
-plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="", ylim = range(yCoor) + max(radius)*c(-1, 1)*0.5, xlim = range(xCoor) + max(radius)*c(-1, 1)*0.5, col=gray(.9), asp = 2/3)
+plot(xCoor, yCoor, type="l", axes = FALSE, ylab="", xlab="",
+ylim = range(yCoor) + max(radius)*c(-1, 1)*0.5,
+xlim = range(xCoor) + max(radius)*c(-1, 1)*0.5, col=gray(.9), asp = 2/3)
 
 segments(x0 = rep(0, length(xCoor)), y0 = rep(0, length(xCoor)), x1 = xCoor, y1 = yCoor, col = gray((1:length(xCoor))/(length(xCoor)+1)), lty = 3)
 
